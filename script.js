@@ -1,11 +1,77 @@
-// script.js - SIMPLIFIED WORKING VERSION
+// script.js - ENHANCED VERSION
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Portfolio loaded successfully');
     
     // Only run if GSAP loads
     if (typeof gsap !== 'undefined') {
         try {
-            // Simple fade-in for sections
+            // Force countdown animation start
+            gsap.from('.countdown-number', {
+                opacity: 0,
+                scale: 2,
+                duration: 1,
+                stagger: 1,
+                ease: "power2.out"
+            });
+            
+            // Opening message animation
+            gsap.from('.fade-in-text', {
+                opacity: 0,
+                y: 20,
+                duration: 0.8,
+                stagger: 0.5,
+                delay: 3,
+                ease: "power2.out"
+            });
+            
+            // Hero content reveal
+            gsap.to('.hero-content', {
+                opacity: 1,
+                duration: 1,
+                delay: 4,
+                ease: "power2.out"
+            });
+            
+            // Title words reveal
+            gsap.from('.title-word', {
+                opacity: 0,
+                y: 20,
+                duration: 0.8,
+                stagger: 0.2,
+                delay: 4.8,
+                ease: "power2.out"
+            });
+            
+            // Underline and tagline
+            gsap.to(['.title-underline', '.hero-tagline'], {
+                opacity: 1,
+                duration: 1,
+                delay: 5.8,
+                ease: "power2.out"
+            });
+            
+            // Scroll indicator
+            gsap.to('.scroll-indicator', {
+                opacity: 1,
+                duration: 1,
+                delay: 6.5,
+                ease: "power2.out"
+            });
+            
+            // Name glow effect
+            const name = document.querySelector('.cinematic-name');
+            if (name) {
+                setInterval(() => {
+                    gsap.to(name, {
+                        textShadow: '0 0 30px #00a8ff',
+                        duration: 2,
+                        yoyo: true,
+                        repeat: 1
+                    });
+                }, 4000);
+            }
+            
+            // Chapter animations
             const sections = document.querySelectorAll('.chapter');
             sections.forEach((section, index) => {
                 gsap.from(section, {
@@ -21,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
             
-            // Simple hover effects
+            // Interactive elements hover
             const interactiveElements = document.querySelectorAll('.skill-category, .achievement-card, .contact-item');
             interactiveElements.forEach(el => {
                 el.addEventListener('mouseenter', () => {
@@ -41,22 +107,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
             
-            // Name glow effect (simple)
-            const name = document.querySelector('.cinematic-name');
-            if (name) {
-                setInterval(() => {
-                    gsap.to(name, {
-                        textShadow: '0 0 30px #00a8ff',
-                        duration: 2,
-                        yoyo: true,
-                        repeat: 1
-                    });
-                }, 4000);
-            }
-            
         } catch (error) {
-            console.log('Simple animations only');
+            console.log('Animation error:', error);
         }
+    } else {
+        // Fallback if GSAP doesn't load
+        setTimeout(() => {
+            document.querySelectorAll('.hero-content, .title-underline, .hero-tagline, .scroll-indicator').forEach(el => {
+                el.style.opacity = '1';
+            });
+        }, 1000);
     }
     
     // Smooth scroll for navigation
@@ -75,11 +135,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    // Make sure everything is visible
-    setTimeout(() => {
-        document.querySelectorAll('*').forEach(el => {
-            el.style.opacity = '1';
-        });
-    }, 100);
 });
