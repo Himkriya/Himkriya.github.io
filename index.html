@@ -3,158 +3,832 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HIM KRIYA | Cinematic Portfolio</title>
+    <title>HIM KRIYA | CINEMATIC TECH PORTFOLIO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/EasePack.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Bebas+Neue&family=Audiowide&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     
-    <!-- EMERGENCY FIX CSS - REMOVED !important FROM ANIMATIONS -->
+    <!-- IMAX-LEVEL CINEMATIC STYLES -->
     <style>
-        /* Basic fallback only - NO !important on animations */
-        body {
-            background: #000000;
-            color: white;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            font-family: 'Montserrat', sans-serif;
+        /* IMAX Opening Sequence */
+        @keyframes imaxIntro {
+            0% { background: #000; }
+            10% { background: radial-gradient(circle, #000 20%, #00a8ff 100%); }
+            20% { background: #000; }
+            30% { background: radial-gradient(circle, #000 20%, #9d00ff 100%); }
+            40% { background: #000; }
+            100% { background: #000; }
         }
         
-        /* REMOVE all !important from animated elements */
-        .hero {
-            height: 100vh;
+        /* Film Reel Effect */
+        .film-reels {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,168,255,0.1) 2px, rgba(0,168,255,0.1) 4px);
+            z-index: 99999;
+            pointer-events: none;
+            animation: filmScroll 20s linear infinite;
+            display: none;
+        }
+        
+        @keyframes filmScroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100px; }
+        }
+        
+        /* HOLOGRAM EFFECT */
+        .hologram-grid {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0,168,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,168,255,0.03) 1px, transparent 1px),
+                linear-gradient(rgba(157,0,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(157,0,255,0.02) 1px, transparent 1px);
+            background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+            z-index: -2;
+            animation: hologramPulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes hologramPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* MATRIX RAIN (Optional) */
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            opacity: 0.05;
+        }
+        
+        /* CINEMATIC LENS FLARES */
+        .lens-flare {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(0,168,255,0.3) 30%, transparent 70%);
+            filter: blur(40px);
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        /* 3D DEPTH EFFECT */
+        .depth-layers {
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        
+        /* LASER SCANNER */
+        .laser-scanner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00a8ff, #9d00ff, #00a8ff, transparent);
+            box-shadow: 0 0 20px #00a8ff;
+            z-index: 9999;
+            transform: translateY(0);
+            animation: laserScan 8s linear infinite;
+        }
+        
+        @keyframes laserScan {
+            0% { top: 0%; }
+            50% { top: 100%; }
+            100% { top: 0%; }
+        }
+        
+        /* IMPACT TITLES */
+        .impact-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 8rem;
+            letter-spacing: 0.2em;
+            background: linear-gradient(45deg, #00a8ff, #9d00ff, #00ffcc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(0,168,255,0.5);
+            animation: impactShake 0.5s ease-out;
+        }
+        
+        @keyframes impactShake {
+            0% { letter-spacing: 0.5em; opacity: 0; }
+            50% { letter-spacing: 0.3em; }
+            100% { letter-spacing: 0.2em; opacity: 1; }
+        }
+        
+        /* DATA STREAM EFFECT */
+        .data-stream {
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(transparent, #00a8ff, transparent);
+            animation: dataFlow 3s linear infinite;
+        }
+        
+        @keyframes dataFlow {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        
+        /* TERMINAL TYPEWRITER */
+        .terminal-text {
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+            border-right: 2px solid #00ff00;
+            animation: terminalBlink 1s infinite;
+        }
+        
+        @keyframes terminalBlink {
+            0%, 100% { border-color: #00ff00; }
+            50% { border-color: transparent; }
+        }
+        
+        /* WIREFRAME GRID */
+        .wireframe {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0,168,255,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,168,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: wireframeMove 20s linear infinite;
+        }
+        
+        @keyframes wireframeMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+        
+        /* ENERGY PULSE */
+        .energy-pulse {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid #00a8ff;
+            box-shadow: 0 0 30px #00a8ff;
+            animation: pulseExpand 3s ease-out infinite;
+        }
+        
+        @keyframes pulseExpand {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+        
+        /* GLITCH EFFECT */
+        .glitch {
+            position: relative;
+            animation: glitch 5s infinite;
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        
+        /* STARFIELD */
+        .starfield {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: -4;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 1; }
+        }
+        
+        /* CINEMATIC BARS */
+        .cinematic-bars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99998;
+            pointer-events: none;
+        }
+        
+        .top-bar, .bottom-bar {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 20vh;
+            background: rgba(0,0,0,0.85);
+            transform: translateY(0);
+            transition: transform 1s ease;
+        }
+        
+        .top-bar { top: 0; }
+        .bottom-bar { bottom: 0; }
+        
+        /* DRONE VIEW */
+        .drone-view {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at var(--x) var(--y), transparent 10%, rgba(0,0,0,0.8) 70%);
+            z-index: 9997;
+            pointer-events: none;
+        }
+        
+        /* MISSION CONTROL */
+        .mission-control {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(transparent, rgba(0,20,40,0.9));
+            border-top: 1px solid rgba(0,168,255,0.3);
+            z-index: 9996;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .mission-item {
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: #00ffcc;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .mission-status {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes statusPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        /* TECH HUD */
+        .hud-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0,168,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(157,0,255,0.1) 0%, transparent 50%);
+            z-index: 9995;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        
+        .hud-element {
+            position: absolute;
+            border: 1px solid rgba(0,168,255,0.3);
+            background: rgba(0,168,255,0.05);
+        }
+        
+        /* CHAPTER TRANSITIONS */
+        .chapter-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 99994;
+            display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            position: relative;
-            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
         }
         
-        .cinematic-name {
+        .transition-text {
             font-family: 'Orbitron', sans-serif;
             font-size: 4rem;
-            font-weight: 800;
-            letter-spacing: 10px;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            line-height: 0.9;
-            margin: 0 0 20px 0;
-            padding: 0;
-            /* Remove text-shadow !important to allow animation */
-            text-shadow: 0 0 20px #00a8ff;
+            color: #00a8ff;
+            letter-spacing: 20px;
+            text-transform: uppercase;
         }
         
-        .name-part {
-            display: block;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .cinematic-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.2rem;
-            letter-spacing: 8px;
-            color: #e8e8e8;
-            margin: 0 0 30px 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .title-word {
-            display: inline-block;
-            margin: 0 5px;
-            /* Allow opacity animation */
-            opacity: 1 !important;
-        }
-        
-        .hero-tagline {
-            max-width: 800px;
-            margin: 0 auto 40px auto;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            color: #e8e8e8;
-            line-height: 1.5;
-        }
-        
-        .scroll-indicator {
+        /* DROP POD EFFECT */
+        .drop-pod {
             position: absolute;
-            bottom: 50px;
+            width: 300px;
+            height: 500px;
+            background: linear-gradient(transparent, rgba(0,168,255,0.1));
+            border: 1px solid rgba(0,168,255,0.3);
+            clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 100%, 0% 100%, 0% 20%);
+            transform: translateY(-1000px);
+            animation: dropIn 3s ease-out forwards;
+        }
+        
+        @keyframes dropIn {
+            0% { transform: translateY(-1000px); opacity: 0; }
+            70% { transform: translateY(100px); opacity: 1; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* DATA MATRIX */
+        .data-matrix {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(0deg, 
+                    transparent, 
+                    transparent 2px, 
+                    rgba(0,255,255,0.05) 2px, 
+                    rgba(0,255,255,0.05) 4px),
+                repeating-linear-gradient(90deg, 
+                    transparent, 
+                    transparent 2px, 
+                    rgba(255,0,255,0.05) 2px, 
+                    rgba(255,0,255,0.05) 4px);
+            z-index: -2;
+            animation: matrixScan 10s linear infinite;
+        }
+        
+        @keyframes matrixScan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(20px); }
+        }
+        
+        /* BLADE RUNNER EFFECT */
+        .blade-runner {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(180deg, 
+                    rgba(255,20,147,0.1) 0%, 
+                    transparent 20%, 
+                    transparent 80%, 
+                    rgba(0,255,255,0.1) 100%);
+            z-index: -1;
+            animation: bladeMove 10s ease-in-out infinite;
+        }
+        
+        @keyframes bladeMove {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* HACKER TERMINAL */
+        .hacker-terminal {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 400px;
+            height: 200px;
+            background: rgba(0,0,0,0.9);
+            border: 1px solid #00ff00;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            padding: 20px;
+            overflow: hidden;
+            z-index: 9993;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .terminal-line {
+            margin: 5px 0;
+            animation: typeWriter 2s steps(40) forwards;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #00ff00;
+        }
+        
+        @keyframes typeWriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        /* SONAR PULSE */
+        .sonar-pulse {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .sonar-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid #00a8ff;
+            animation: sonar 4s ease-out infinite;
+        }
+        
+        @keyframes sonar {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(5); opacity: 0; }
+        }
+        
+        /* TECH CORE */
+        .tech-core {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #00a8ff, #9d00ff);
+            border-radius: 50%;
+            filter: blur(20px);
+            opacity: 0.1;
+            animation: corePulse 3s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        @keyframes corePulse {
+            0%, 100% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.2); opacity: 0.2; }
+        }
+        
+        /* CINEMATIC SOUND WAVES */
+        .sound-waves {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(transparent, rgba(0,168,255,0.1));
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .wave {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 10px,
+                #00a8ff 10px,
+                #00a8ff 20px
+            );
+            animation: waveMove 10s linear infinite;
+        }
+        
+        @keyframes waveMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-20px); }
+        }
+        
+        /* HOLOGRAPHIC INTERFACE */
+        .holographic-interface {
+            position: fixed;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 400px;
+            background: rgba(0,168,255,0.05);
+            border: 1px solid rgba(0,168,255,0.3);
+            box-shadow: 
+                0 0 100px rgba(0,168,255,0.2),
+                inset 0 0 100px rgba(0,168,255,0.1);
+            backdrop-filter: blur(10px);
+            z-index: 9990;
+            display: none;
+            clip-path: polygon(
+                20px 0, calc(100% - 20px) 0, 100% 20px,
+                100% calc(100% - 20px), calc(100% - 20px) 100%,
+                20px 100%, 0 calc(100% - 20px), 0 20px
+            );
         }
         
-        .scroll-text {
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            color: #e8e8e8;
-            margin-top: 10px;
+        /* INFINITY MIRROR */
+        .infinity-mirror {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 49.5%, rgba(0,168,255,0.1) 50.5%),
+                linear-gradient(-45deg, transparent 49.5%, rgba(157,0,255,0.1) 50.5%);
+            background-size: 100px 100px;
+            z-index: -1;
+            animation: infinityMove 20s linear infinite;
         }
         
-        /* FIX FOR COUNTDOWN ANIMATION */
-        .countdown-number {
-            opacity: 0 !important; /* This is needed for animation start */
-            animation-duration: 1s !important;
-            animation-fill-mode: forwards !important;
+        @keyframes infinityMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
         }
         
-        .countdown-number:nth-child(1) { 
-            animation-delay: 0s !important;
-        }
-        .countdown-number:nth-child(2) { 
-            animation-delay: 1s !important;
-        }
-        .countdown-number:nth-child(3) { 
-            animation-delay: 2s !important;
-        }
-        
-        /* FIX FOR FADE-IN TEXTS */
-        .fade-in-text {
-            opacity: 0 !important; /* Start hidden for animation */
-        }
-        
-        .fade-in-text:nth-child(1) { 
-            animation-delay: 3s !important;
-        }
-        .fade-in-text:nth-child(2) { 
-            animation-delay: 3.5s !important;
+        /* CINEMATIC SCAN LINES */
+        .scan-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0,0,0,0.1) 2px,
+                rgba(0,0,0,0.1) 4px
+            );
+            z-index: 99991;
+            pointer-events: none;
+            animation: scanMove 10s linear infinite;
         }
         
-        /* FIX FOR TITLE WORDS */
-        .title-word:nth-child(1) { animation-delay: 4.8s !important; }
-        .title-word:nth-child(2) { animation-delay: 5s !important; }
-        .title-word:nth-child(3) { animation-delay: 5.2s !important; }
-        .title-word:nth-child(4) { animation-delay: 5.4s !important; }
-        .title-word:nth-child(5) { animation-delay: 5.6s !important; }
-        
-        * {
-            box-sizing: border-box;
+        @keyframes scanMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 20px; }
         }
         
-        /* Force initial hidden state for animated elements */
-        .hero-content {
-            opacity: 0;
+        /* ENERGY RIPPLE */
+        .energy-ripple {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid #00a8ff;
+            animation: ripple 2s ease-out infinite;
         }
         
-        .title-underline {
-            opacity: 0;
+        @keyframes ripple {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        
+        /* TECHNO BEAT */
+        .techno-beat {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        .beat-bar {
+            position: absolute;
+            bottom: 0;
+            width: 20px;
+            background: linear-gradient(transparent, #00a8ff);
+            animation: beat 0.5s ease-in-out infinite;
+            transform-origin: bottom;
+        }
+        
+        @keyframes beat {
+            0%, 100% { transform: scaleY(0.5); }
+            50% { transform: scaleY(1); }
+        }
+        
+        /* CYBERPUNK CITY */
+        .cyber-city {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(transparent, rgba(0,168,255,0.1));
+            z-index: -2;
+        }
+        
+        .building {
+            position: absolute;
+            bottom: 0;
+            width: 50px;
+            background: linear-gradient(transparent, #00a8ff);
+            animation: buildingGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes buildingGlow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* HOLOGRAM DISPLAY */
+        .hologram-display {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) perspective(1000px) rotateX(10deg);
+            width: 500px;
+            height: 300px;
+            background: rgba(0,168,255,0.1);
+            border: 1px solid rgba(0,168,255,0.3);
+            box-shadow: 
+                0 0 100px rgba(0,168,255,0.2),
+                inset 0 0 50px rgba(0,168,255,0.1);
+            z-index: -1;
+            clip-path: polygon(0 10%, 10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%);
+            animation: hologramFloat 6s ease-in-out infinite;
+        }
+        
+        @keyframes hologramFloat {
+            0%, 100% { transform: translate(-50%, -50%) perspective(1000px) rotateX(10deg) translateY(0); }
+            50% { transform: translate(-50%, -50%) perspective(1000px) rotateX(10deg) translateY(-20px); }
+        }
+        
+        /* QUANTUM PARTICLES */
+        .quantum-particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+        }
+        
+        .quantum-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00a8ff;
+            border-radius: 50%;
+            animation: quantumMove 3s linear infinite;
+        }
+        
+        @keyframes quantumMove {
+            0% { transform: translate(0, 0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)); opacity: 0; }
+        }
+        
+        /* DATA TRANSMISSION */
+        .data-transmission {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 50px,
+                rgba(0,255,255,0.1) 50px,
+                rgba(0,255,255,0.1) 100px
+            );
+            z-index: -1;
+            animation: transmissionMove 10s linear infinite;
+        }
+        
+        @keyframes transmissionMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 0; }
+        }
+        
+        /* NEURAL NETWORK */
+        .neural-network {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+        
+        .neuron {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #00a8ff;
+            border-radius: 50%;
+            animation: neuronPulse 2s ease-in-out infinite;
+        }
+        
+        .synapse {
+            position: absolute;
+            height: 2px;
+            background: #00a8ff;
+            transform-origin: 0 0;
+            animation: synapseFlow 3s linear infinite;
+        }
+        
+        @keyframes neuronPulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+        
+        @keyframes synapseFlow {
+            0% { width: 0; opacity: 0; }
+            50% { opacity: 1; }
+            100% { width: var(--length); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <!-- Noise Overlay -->
+    <!-- CINEMATIC OVERLAY SYSTEM -->
     <div class="grain-overlay"></div>
+    <div class="film-reels" id="filmReels"></div>
+    <div class="hologram-grid"></div>
+    <div class="wireframe"></div>
+    <div class="data-matrix"></div>
+    <div class="blade-runner"></div>
+    <div class="infinity-mirror"></div>
+    <div class="scan-lines"></div>
+    <div class="techno-beat" id="technoBeat"></div>
+    <div class="cyber-city" id="cyberCity"></div>
+    <div class="hologram-display"></div>
+    <div class="data-transmission"></div>
+    <div class="hud-overlay"></div>
     
-    <!-- Animated Background Elements -->
+    <!-- STARFIELD -->
+    <div class="starfield" id="starfield"></div>
+    
+    <!-- CINEMATIC BARS -->
+    <div class="cinematic-bars" id="cinematicBars">
+        <div class="top-bar"></div>
+        <div class="bottom-bar"></div>
+    </div>
+    
+    <!-- LASER SCANNER -->
+    <div class="laser-scanner" id="laserScanner"></div>
+    
+    <!-- MISSION CONTROL -->
+    <div class="mission-control" id="missionControl">
+        <div class="mission-item">
+            <div class="mission-status"></div>
+            <span>SYSTEMS: ONLINE</span>
+        </div>
+        <div class="mission-item">
+            <div class="mission-status"></div>
+            <span>NETWORK: SECURE</span>
+        </div>
+        <div class="mission-item">
+            <div class="mission-status"></div>
+            <span>DATASTREAM: ACTIVE</span>
+        </div>
+        <div class="mission-item">
+            <div class="mission-status"></div>
+            <span>PORTFOLIO: ENGAGED</span>
+        </div>
+    </div>
+    
+    <!-- HACKER TERMINAL -->
+    <div class="hacker-terminal" id="hackerTerminal">
+        <div class="terminal-line">> INITIALIZING CINEMATIC PORTFOLIO...</div>
+        <div class="terminal-line">> LOADING NEURAL INTERFACE...</div>
+        <div class="terminal-line">> ACCESSING TECH ARSENAL...</div>
+        <div class="terminal-line">> CONNECTING TO SERVER...</div>
+        <div class="terminal-line">> READY FOR DEPLOYMENT</div>
+    </div>
+    
+    <!-- CHAPTER TRANSITIONS -->
+    <div class="chapter-transition" id="chapterTransition">
+        <div class="transition-text" id="transitionText"></div>
+    </div>
+    
+    <!-- SONAR PULSE -->
+    <div class="sonar-pulse" id="sonarPulse"></div>
+    
+    <!-- TECH CORE -->
+    <div class="tech-core"></div>
+    
+    <!-- SOUND WAVES -->
+    <div class="sound-waves">
+        <div class="wave"></div>
+    </div>
+    
+    <!-- HOLOGRAPHIC INTERFACE -->
+    <div class="holographic-interface" id="holographicInterface"></div>
+    
+    <!-- QUANTUM PARTICLES -->
+    <div class="quantum-particles" id="quantumParticles"></div>
+    
+    <!-- NEURAL NETWORK -->
+    <div class="neural-network" id="neuralNetwork"></div>
+    
+    <!-- Background Elements -->
     <div class="bg-particles"></div>
     <div class="light-streaks"></div>
     <div class="floating-grid"></div>
@@ -163,6 +837,7 @@
     <nav class="cinematic-nav">
         <div class="nav-logo">
             <span class="nav-glow">HK</span>
+            <div class="nav-data-stream"></div>
         </div>
         <div class="nav-links">
             <a href="#origin" class="nav-link"><span>CHAPTER 1: THE ORIGIN</span></a>
@@ -171,305 +846,412 @@
             <a href="#proof" class="nav-link"><span>CHAPTER 4: THE PROOF</span></a>
             <a href="#contact" class="nav-link"><span>CHAPTER 5: THE NEXT MOVE</span></a>
         </div>
+        <div class="nav-status">
+            <div class="status-indicator"></div>
+            <span class="status-text">SYSTEM ACTIVE</span>
+        </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section - Enhanced -->
     <section class="hero">
-        <div class="hero-overlay"></div>
+        <!-- Opening Sequence -->
+        <div class="imax-intro" id="imaxIntro"></div>
         
-        <div class="intro-sequence">
-            <div class="film-countdown">
+        <!-- Film Countdown -->
+        <div class="film-countdown-sequence">
+            <div class="countdown-container">
+                <div class="countdown-frame"></div>
+                <div class="countdown-number">5</div>
+                <div class="countdown-number">4</div>
                 <div class="countdown-number">3</div>
                 <div class="countdown-number">2</div>
                 <div class="countdown-number">1</div>
-            </div>
-            
-            <div class="opening-message">
-                <p class="fade-in-text">THIS IS NOT A RESUME</p>
-                <p class="fade-in-text">THIS IS MY STORY</p>
+                <div class="countdown-label">CINEMATIC EXPERIENCE INITIATED</div>
             </div>
         </div>
-
-        <div class="hero-content">
-            <div class="name-container">
-                <div class="light-sweep"></div>
-                <h1 class="cinematic-name">
-                    <span class="name-part">HIM</span>
-                    <span class="name-part">KRIYA</span>
-                </h1>
-                <div class="name-glow"></div>
-                <div class="name-reflection"></div>
+        
+        <!-- Main Hero -->
+        <div class="hero-content depth-layers">
+            <!-- 3D Name Effect -->
+            <div class="name-3d-container">
+                <div class="name-layer name-layer-1">HIM KRIYA</div>
+                <div class="name-layer name-layer-2">HIM KRIYA</div>
+                <div class="name-layer name-layer-3">HIM KRIYA</div>
+                <div class="name-glow-effect"></div>
+                <div class="name-energy-field"></div>
             </div>
             
-            <div class="title-container">
-                <h2 class="cinematic-title">
-                    <span class="title-word">IT</span>
-                    <span class="title-word">EXECUTIVE</span>
-                    <span class="title-word">&</span>
-                    <span class="title-word">TECHNICAL</span>
-                    <span class="title-word">STRATEGIST</span>
+            <!-- Title Matrix -->
+            <div class="title-matrix">
+                <div class="matrix-line"></div>
+                <h2 class="cinematic-title glitch">
+                    <span class="title-char" data-char="I">I</span>
+                    <span class="title-char" data-char="T">T</span>
+                    <span class="title-char" data-char=" "> </span>
+                    <span class="title-char" data-char="E">E</span>
+                    <span class="title-char" data-char="X">X</span>
+                    <span class="title-char" data-char="E">E</span>
+                    <span class="title-char" data-char="C">C</span>
+                    <span class="title-char" data-char="U">U</span>
+                    <span class="title-char" data-char="T">T</span>
+                    <span class="title-char" data-char="I">I</span>
+                    <span class="title-char" data-char="V">V</span>
+                    <span class="title-char" data-char="E">E</span>
                 </h2>
-                <div class="title-underline"></div>
+                <div class="matrix-line"></div>
             </div>
             
-            <div class="hero-tagline">
-                <p class="tagline-text">6+ YEARS SHAPING TECHNOLOGY INFRASTRUCTURE • GUARANTEEING 99.5% UPTIME • LEADING HIGH-STAKES TECHNICAL EXECUTIONS</p>
+            <!-- Tech Stats -->
+            <div class="tech-stats-grid">
+                <div class="tech-stat">
+                    <div class="stat-value" data-target="99.5">0</div>
+                    <div class="stat-label">SYSTEM UPTIME</div>
+                </div>
+                <div class="tech-stat">
+                    <div class="stat-value" data-target="80">0</div>
+                    <div class="stat-label">STAFF SUPPORTED</div>
+                </div>
+                <div class="tech-stat">
+                    <div class="stat-value" data-target="6">0</div>
+                    <div class="stat-label">YEARS EXPERIENCE</div>
+                </div>
+                <div class="tech-stat">
+                    <div class="stat-value" data-target="200">0</div>
+                    <div class="stat-label">VIP EVENTS</div>
+                </div>
             </div>
         </div>
         
-        <div class="scroll-indicator">
-            <div class="scroll-line"></div>
-            <p class="scroll-text">BEGIN THE STORY</p>
+        <!-- Scroll Indicator -->
+        <div class="cyber-scroll-indicator">
+            <div class="scroll-beam"></div>
+            <div class="scroll-orb"></div>
+            <p class="scroll-text terminal-text">BEGIN CINEMATIC EXPERIENCE</p>
         </div>
     </section>
 
-    <!-- Chapter 1: The Origin -->
-    <section id="origin" class="chapter" data-chapter="01">
+    <!-- Enhanced Chapter 1 -->
+    <section id="origin" class="chapter cinematic-chapter" data-chapter="01">
+        <div class="chapter-overlay"></div>
+        <div class="chapter-glitch"></div>
+        
         <div class="chapter-header">
-            <div class="chapter-number">CHAPTER 01</div>
-            <h2 class="chapter-title">THE ORIGIN</h2>
-            <div class="chapter-divider"></div>
+            <div class="chapter-number hologram">CHAPTER 01</div>
+            <h2 class="chapter-title impact-title">THE ORIGIN</h2>
+            <div class="chapter-data-stream"></div>
         </div>
         
-        <div class="chapter-content">
-            <div class="origin-card">
-                <div class="card-glow"></div>
-                <h3 class="card-title">FROM REPAIR SHOP TO CORPORATE INFRASTRUCTURE</h3>
-                <p class="card-text">
-                    Proactive IT professional with over <span class="highlight">6 years</span> of experience, beginning as the owner of a computer repair shop where I resolved diverse hardware and software issues. Currently manage corporate IT infrastructure for <span class="highlight">80+ staff</span> and collaborate effectively with international teams. Combines deep technical troubleshooting with strategic operational oversight.
-                </p>
+        <div class="origin-sequence">
+            <!-- Timeline Visualization -->
+            <div class="timeline-visual">
+                <div class="timeline-node" data-year="2018"></div>
+                <div class="timeline-node" data-year="2020"></div>
+                <div class="timeline-node" data-year="2022"></div>
+                <div class="timeline-node" data-year="2024"></div>
+                <div class="timeline-path"></div>
+            </div>
+            
+            <!-- Origin Story -->
+            <div class="origin-story">
+                <div class="story-card holographic">
+                    <h3>FROM REPAIR SHOP TO CORPORATE INFRASTRUCTURE</h3>
+                    <p class="story-text">Proactive IT professional with over <span class="highlight">6 years</span> of experience, beginning as the owner of a computer repair shop where I resolved diverse hardware and software issues. Currently manage corporate IT infrastructure for <span class="highlight">80+ staff</span> and collaborate effectively with international teams. Combines deep technical troubleshooting with strategic operational oversight.</p>
+                    
+                    <div class="tech-evolution">
+                        <div class="evolution-stage">
+                            <div class="stage-icon">🛠️</div>
+                            <h4>Stage 1: Foundation</h4>
+                            <p>Computer Repair & Retail</p>
+                        </div>
+                        <div class="evolution-stage">
+                            <div class="stage-icon">🔧</div>
+                            <h4>Stage 2: Growth</h4>
+                            <p>Technical Support & Management</p>
+                        </div>
+                        <div class="evolution-stage">
+                            <div class="stage-icon">⚡</div>
+                            <h4>Stage 3: Mastery</h4>
+                            <p>IT Infrastructure & Strategy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Chapter 2 -->
+    <section id="arsenal" class="chapter cinematic-chapter" data-chapter="02">
+        <div class="arsenal-overlay"></div>
+        
+        <div class="chapter-header">
+            <div class="chapter-number hologram">CHAPTER 02</div>
+            <h2 class="chapter-title impact-title">THE ARSENAL</h2>
+            <div class="arsenal-grid-overlay"></div>
+        </div>
+        
+        <!-- Skill Matrix -->
+        <div class="skill-matrix">
+            <!-- 3D Skill Visualization -->
+            <div class="skill-sphere">
+                <div class="sphere-surface"></div>
+                <div class="skill-node" data-skill="Networking"></div>
+                <div class="skill-node" data-skill="Security"></div>
+                <div class="skill-node" data-skill="Cloud"></div>
+                <div class="skill-node" data-skill="Automation"></div>
+            </div>
+            
+            <!-- Skill Categories Grid -->
+            <div class="skill-grid-3d">
+                <div class="skill-cube" data-category="TECHNICAL">
+                    <div class="cube-face front">
+                        <i class="fas fa-server"></i>
+                        <h3>SYSTEMS</h3>
+                    </div>
+                    <div class="cube-face back">
+                        <ul>
+                            <li>Windows Server</li>
+                            <li>Linux Administration</li>
+                            <li>Virtualization</li>
+                        </ul>
+                    </div>
+                </div>
                 
-                <div class="origin-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">99.5%</div>
-                        <div class="stat-label">System Uptime</div>
+                <div class="skill-cube" data-category="NETWORK">
+                    <div class="cube-face front">
+                        <i class="fas fa-network-wired"></i>
+                        <h3>NETWORK</h3>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">80+</div>
-                        <div class="stat-label">Staff Supported</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">6+</div>
-                        <div class="stat-label">Years Experience</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">200+</div>
-                        <div class="stat-label">VIP Events</div>
+                    <div class="cube-face back">
+                        <ul>
+                            <li>Cisco/MikroTik</li>
+                            <li>Firewall Configuration</li>
+                            <li>VPN Setup</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Chapter 2: The Arsenal -->
-    <section id="arsenal" class="chapter" data-chapter="02">
-        <div class="chapter-header">
-            <div class="chapter-number">CHAPTER 02</div>
-            <h2 class="chapter-title">THE ARSENAL</h2>
-            <div class="chapter-divider"></div>
-        </div>
-        
-        <div class="skills-container">
-            <div class="skill-category">
-                <div class="category-header">
-                    <i class="fas fa-tools"></i>
-                    <h3>TECHNICAL SUPPORT & TROUBLESHOOTING</h3>
-                </div>
-                <ul class="skill-list">
-                    <li>Hardware/Software Diagnosis & Repair</li>
-                    <li>Windows OS & Microsoft 365 Administration</li>
-                    <li>End-User Support & Helpdesk Operations</li>
-                    <li>AV & Presentation Systems Management</li>
-                </ul>
-            </div>
-            
-            <div class="skill-category">
-                <div class="category-header">
-                    <i class="fas fa-network-wired"></i>
-                    <h3>SYSTEMS & NETWORK ADMINISTRATION</h3>
-                </div>
-                <ul class="skill-list">
-                    <li>Network Setup & Maintenance</li>
-                    <li>System Monitoring & Uptime Assurance</li>
-                    <li>Smart Access Control Systems</li>
-                    <li>Basic Cybersecurity & Access Management</li>
-                </ul>
-            </div>
-            
-            <div class="skill-category">
-                <div class="category-header">
-                    <i class="fas fa-cogs"></i>
-                    <h3>IT OPERATIONS & MANAGEMENT</h3>
-                </div>
-                <ul class="skill-list">
-                    <li>IT Procurement & Vendor Negotiation</li>
-                    <li>Inventory & Asset Lifecycle Management</li>
-                    <li>Project Coordination & Event IT Support</li>
-                    <li>Cross-functional Team Collaboration</li>
-                </ul>
-            </div>
-            
-            <div class="skill-category">
-                <div class="category-header">
-                    <i class="fas fa-users"></i>
-                    <h3>BUSINESS & SOFT SKILLS</h3>
-                </div>
-                <ul class="skill-list">
-                    <li>Customer Service & Client Relationship</li>
-                    <li>Multilingual Communication</li>
-                    <li>Problem Solving & Proactive Maintenance</li>
-                    <li>Sales & Business Development</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Chapter 3: The Journey -->
-    <section id="journey" class="chapter" data-chapter="03">
-        <div class="chapter-header">
-            <div class="chapter-number">CHAPTER 03</div>
-            <h2 class="chapter-title">THE JOURNEY</h2>
-            <div class="chapter-divider"></div>
-        </div>
-        
-        <div class="timeline">
-            <div class="timeline-line"></div>
-            
-            <div class="timeline-item">
-                <div class="timeline-date">2018 – 2024</div>
-                <div class="timeline-content">
-                    <h3>BUSINESS OWNER & MANAGER</h3>
-                    <h4>Kriya Computer & Printer | Ratanakiri Province</h4>
-                    <p>Founded and scaled a full-cycle IT business, establishing a loyal customer base through expert technical service, sales, and marketing. Drove revenue by proactively selling computers, laptops, and peripherals while analyzing competitor strategies.</p>
-                    <div class="timeline-tags">
-                        <span class="tag">Technical Support</span>
-                        <span class="tag">Business Development</span>
-                        <span class="tag">Client Relations</span>
-                        <span class="tag">Graphic Design</span>
+                
+                <div class="skill-cube" data-category="CLOUD">
+                    <div class="cube-face front">
+                        <i class="fas fa-cloud"></i>
+                        <h3>CLOUD</h3>
                     </div>
-                </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-date">2024 – Present</div>
-                <div class="timeline-content">
-                    <h3>IT EXECUTIVE</h3>
-                    <h4>Canopysands Development | Sihanoukville City</h4>
-                    <p>Manage IT infrastructure for 80+ local and expatriate staff across 2 sites. Played key technical role in IFC Building Opening Ceremony for 200+ executives. Ensure 99.5%+ operational reliability for critical systems. Collaborate with international teams in Vietnam and Australia.</p>
-                    <div class="timeline-tags">
-                        <span class="tag">Infrastructure Management</span>
-                        <span class="tag">High-Stakes Events</span>
-                        <span class="tag">Vendor Relations</span>
-                        <span class="tag">International Collaboration</span>
+                    <div class="cube-face back">
+                        <ul>
+                            <li>AWS/Azure</li>
+                            <li>Cloud Security</li>
+                            <li>DevOps Tools</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Chapter 4: The Proof -->
-    <section id="proof" class="chapter" data-chapter="04">
+    <!-- Enhanced Chapter 3 -->
+    <section id="journey" class="chapter cinematic-chapter" data-chapter="03">
+        <div class="journey-overlay"></div>
+        
         <div class="chapter-header">
-            <div class="chapter-number">CHAPTER 04</div>
-            <h2 class="chapter-title">THE PROOF</h2>
-            <div class="chapter-divider"></div>
+            <div class="chapter-number hologram">CHAPTER 03</div>
+            <h2 class="chapter-title impact-title">THE JOURNEY</h2>
         </div>
         
-        <div class="achievements">
-            <div class="achievement-card">
-                <div class="achievement-icon">
-                    <i class="fas fa-chart-line"></i>
+        <!-- Interactive Timeline -->
+        <div class="interactive-timeline">
+            <div class="timeline-track"></div>
+            
+            <div class="timeline-event" data-year="2018">
+                <div class="event-marker"></div>
+                <div class="event-content holographic">
+                    <h3>KRIVA COMPUTER & PRINTER</h3>
+                    <h4>Founder & Technical Lead</h4>
+                    <p>Built a full-cycle IT business from ground up, establishing market presence through exceptional technical service and customer relationship management.</p>
+                    <div class="event-tech">
+                        <span class="tech-tag">Hardware Repair</span>
+                        <span class="tech-tag">Software Solutions</span>
+                        <span class="tech-tag">Business Strategy</span>
+                    </div>
                 </div>
-                <h3>Guaranteed Critical System Uptime</h3>
-                <p>Ensured <span class="highlight">99.5%+</span> operational reliability for IT infrastructure across two corporate sites, supporting seamless operations for 80+ staff.</p>
             </div>
             
-            <div class="achievement-card">
-                <div class="achievement-icon">
-                    <i class="fas fa-star"></i>
+            <div class="timeline-event" data-year="2024">
+                <div class="event-marker"></div>
+                <div class="event-content holographic">
+                    <h3>CANOPYSANDS DEVELOPMENT</h3>
+                    <h4>IT Executive</h4>
+                    <p>Managing corporate IT infrastructure for 80+ staff across multiple sites, ensuring 99.5%+ uptime for critical systems and leading high-stakes technical executions.</p>
+                    <div class="event-tech">
+                        <span class="tech-tag">Infrastructure</span>
+                        <span class="tech-tag">Security</span>
+                        <span class="tech-tag">Leadership</span>
+                    </div>
                 </div>
-                <h3>High-Profile Technical Execution</h3>
-                <p>Key technical role in successful IFC Building Opening Ceremony, operating integrated AV, lighting, and display systems for <span class="highlight">200+ executives and VIP clients</span> without failure.</p>
-            </div>
-            
-            <div class="achievement-card">
-                <div class="achievement-icon">
-                    <i class="fas fa-money-bill-wave"></i>
-                </div>
-                <h3>Cost Efficiency & Process Improvement</h3>
-                <p>Reduced IT procurement costs by <span class="highlight">~15%</span> through strategic vendor negotiation while improving quality and delivery timelines.</p>
-            </div>
-            
-            <div class="achievement-card">
-                <div class="achievement-icon">
-                    <i class="fas fa-business-time"></i>
-                </div>
-                <h3>Full-Cycle IT Business</h3>
-                <p>Founded and scaled a computer sales and repair shop, establishing a loyal customer base through expert technical service, sales, and marketing.</p>
             </div>
         </div>
         
-        <div class="cta-container">
-            <a href="#" class="cinematic-button">
-                <span class="button-text">DOWNLOAD FULL RESUME</span>
-                <div class="button-glow"></div>
+        <!-- Journey Visualization -->
+        <div class="journey-visual">
+            <canvas id="journeyCanvas"></canvas>
+        </div>
+    </section>
+
+    <!-- Enhanced Chapter 4 -->
+    <section id="proof" class="chapter cinematic-chapter" data-chapter="04">
+        <div class="proof-overlay"></div>
+        
+        <div class="chapter-header">
+            <div class="chapter-number hologram">CHAPTER 04</div>
+            <h2 class="chapter-title impact-title">THE PROOF</h2>
+        </div>
+        
+        <!-- Achievement Showcase -->
+        <div class="achievement-showcase">
+            <!-- Achievement Carousel -->
+            <div class="achievement-carousel">
+                <div class="carousel-track">
+                    <div class="achievement-hologram">
+                        <div class="hologram-content">
+                            <div class="achievement-value">99.5%</div>
+                            <h3>SYSTEM UPTIME</h3>
+                            <p>Guaranteed operational reliability across all critical infrastructure.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-hologram">
+                        <div class="hologram-content">
+                            <div class="achievement-value">200+</div>
+                            <h3>VIP EVENTS</h3>
+                            <p>Flawless technical execution for high-profile corporate events.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-hologram">
+                        <div class="hologram-content">
+                            <div class="achievement-value">15%</div>
+                            <h3>COST REDUCTION</h3>
+                            <p>Optimized procurement through strategic vendor negotiations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Metrics Dashboard -->
+            <div class="metrics-dashboard">
+                <div class="metric-graph">
+                    <canvas id="uptimeChart"></canvas>
+                </div>
+                <div class="metric-graph">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Call to Action -->
+        <div class="cta-hologram">
+            <a href="#" class="cinematic-cta">
+                <span class="cta-text">DOWNLOAD FULL TECH DOSSIER</span>
+                <div class="cta-beam"></div>
             </a>
         </div>
     </section>
 
-    <!-- Chapter 5: The Next Move -->
-    <section id="contact" class="chapter" data-chapter="05">
+    <!-- Enhanced Chapter 5 -->
+    <section id="contact" class="chapter cinematic-chapter" data-chapter="05">
+        <div class="contact-overlay"></div>
+        
         <div class="chapter-header">
-            <div class="chapter-number">CHAPTER 05</div>
-            <h2 class="chapter-title">THE NEXT MOVE</h2>
-            <div class="chapter-divider"></div>
+            <div class="chapter-number hologram">CHAPTER 05</div>
+            <h2 class="chapter-title impact-title">THE NEXT MOVE</h2>
         </div>
         
-        <div class="contact-container">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <div class="contact-detail">+855 977-424-025</div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div class="contact-detail">patiyahim@gmail.com</div>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-telegram"></i>
-                    <div class="contact-detail">@himkriya</div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div class="contact-detail">Sihanoukville, Cambodia</div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-language"></i>
-                    <div class="contact-detail">Khmer (Native), English (Professional), Chinese (Basic)</div>
+        <!-- Contact Interface -->
+        <div class="contact-interface">
+            <!-- Holographic Contact Form -->
+            <div class="holographic-form">
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label class="field-label">MISSION BRIEFING</label>
+                        <textarea class="field-input" placeholder="ENTER YOUR MISSION REQUIREMENTS..."></textarea>
+                    </div>
+                    
+                    <div class="contact-grid">
+                        <div class="contact-node">
+                            <div class="node-icon">📱</div>
+                            <div class="node-data">+855 977-424-025</div>
+                        </div>
+                        <div class="contact-node">
+                            <div class="node-icon">✉️</div>
+                            <div class="node-data">patiyahim@gmail.com</div>
+                        </div>
+                        <div class="contact-node">
+                            <div class="node-icon">📍</div>
+                            <div class="node-data">Sihanoukville, Cambodia</div>
+                        </div>
+                        <div class="contact-node">
+                            <div class="node-icon">🌐</div>
+                            <div class="node-data">@himkriya</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div class="final-message">
-                <h3>READY FOR THE NEXT CHAPTER</h3>
-                <p>Looking for opportunities to bring strategic IT leadership, technical excellence, and operational precision to forward-thinking organizations.</p>
+            <!-- Final Message -->
+            <div class="final-transmission">
+                <h3>READY FOR DEPLOYMENT</h3>
+                <p>Seeking strategic partnerships with innovative organizations that value technical excellence, operational precision, and transformative IT leadership.</p>
+                <div class="transmission-status">
+                    <div class="status-light"></div>
+                    <span>SYSTEM STATUS: READY</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Enhanced Footer -->
     <footer class="cinematic-footer">
-        <div class="footer-content">
-            <div class="footer-logo">HK</div>
-            <p class="footer-text">CINEMATIC PORTFOLIO © 2023 • DESIGNED WITH PRECISION • ENGINEERED WITH PURPOSE</p>
-            <div class="footer-links">
-                <a href="#origin">ORIGIN</a> •
-                <a href="#arsenal">ARSENAL</a> •
-                <a href="#journey">JOURNEY</a> •
-                <a href="#proof">PROOF</a> •
-                <a href="#contact">CONTACT</a>
+        <div class="footer-grid">
+            <div class="footer-logo-3d">
+                <div class="logo-cube">
+                    <div class="cube-face">H</div>
+                    <div class="cube-face">K</div>
+                </div>
+            </div>
+            
+            <div class="footer-navigation">
+                <div class="nav-grid">
+                    <a href="#origin" class="footer-nav-link">ORIGIN</a>
+                    <a href="#arsenal" class="footer-nav-link">ARSENAL</a>
+                    <a href="#journey" class="footer-nav-link">JOURNEY</a>
+                    <a href="#proof" class="footer-nav-link">PROOF</a>
+                    <a href="#contact" class="footer-nav-link">CONTACT</a>
+                </div>
+            </div>
+            
+            <div class="footer-copyright">
+                <p class="copyright-text">CINEMATIC TECH PORTFOLIO © 2024 • ENGINEERED WITH PRECISION • DESIGNED FOR IMPACT</p>
+            </div>
+            
+            <div class="footer-tech">
+                <div class="tech-stack">
+                    <span class="tech-item">GSAP</span>
+                    <span class="tech-item">WebGL</span>
+                    <span class="tech-item">CSS3</span>
+                    <span class="tech-item">JavaScript</span>
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- Cinematic Loader -->
+    <div class="cinematic-loader" id="cinematicLoader">
+        <div class="loader-sequence">
+            <div class="loader-bar"></div>
+            <div class="loader-text">INITIALIZING CINEMATIC EXPERIENCE</div>
+            <div class="loader-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
