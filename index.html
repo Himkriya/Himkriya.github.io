@@ -11,92 +11,142 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-        <!-- Emergency Fix CSS -->
+    
+    <!-- EMERGENCY FIX CSS - REMOVED !important FROM ANIMATIONS -->
     <style>
-        /* Force basic styling if CSS fails */
+        /* Basic fallback only - NO !important on animations */
         body {
-            background: #000000 !important;
-            color: white !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            overflow-x: hidden !important;
-            font-family: 'Montserrat', sans-serif !important;
+            background: #000000;
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: 'Montserrat', sans-serif;
         }
         
+        /* REMOVE all !important from animated elements */
         .hero {
-            height: 100vh !important;
-            display: flex !important;
-            flex-direction: column !important;
-            justify-content: center !important;
-            align-items: center !important;
-            text-align: center !important;
-            position: relative !important;
-            padding: 20px !important;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 20px;
         }
         
         .cinematic-name {
-            font-family: 'Orbitron', sans-serif !important;
-            font-size: 4rem !important;
-            font-weight: 800 !important;
-            letter-spacing: 10px !important;
-            color: #ffffff !important;
-            display: flex !important;
-            flex-direction: column !important;
-            line-height: 0.9 !important;
-            margin: 0 0 20px 0 !important;
-            padding: 0 !important;
-            text-shadow: 0 0 20px #00a8ff !important;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: 10px;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            line-height: 0.9;
+            margin: 0 0 20px 0;
+            padding: 0;
+            /* Remove text-shadow !important to allow animation */
+            text-shadow: 0 0 20px #00a8ff;
         }
         
         .name-part {
-            display: block !important;
-            margin: 0 !important;
-            padding: 0 !important;
+            display: block;
+            margin: 0;
+            padding: 0;
         }
         
         .cinematic-title {
-            font-family: 'Montserrat', sans-serif !important;
-            font-size: 1.2rem !important;
-            letter-spacing: 8px !important;
-            color: #e8e8e8 !important;
-            margin: 0 0 30px 0 !important;
-            display: flex !important;
-            flex-wrap: wrap !important;
-            justify-content: center !important;
-            gap: 10px !important;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 8px;
+            color: #e8e8e8;
+            margin: 0 0 30px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
         }
         
         .title-word {
-            display: inline-block !important;
-            margin: 0 5px !important;
+            display: inline-block;
+            margin: 0 5px;
+            /* Allow opacity animation */
+            opacity: 1 !important;
         }
         
         .hero-tagline {
-            max-width: 800px !important;
-            margin: 0 auto 40px auto !important;
-            font-size: 0.8rem !important;
-            letter-spacing: 3px !important;
-            color: #e8e8e8 !important;
-            line-height: 1.5 !important;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            color: #e8e8e8;
+            line-height: 1.5;
         }
         
         .scroll-indicator {
-            position: absolute !important;
-            bottom: 50px !important;
-            left: 50% !important;
-            transform: translateX(-50%) !important;
-            text-align: center !important;
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
         }
         
         .scroll-text {
-            font-size: 0.8rem !important;
-            letter-spacing: 3px !important;
-            color: #e8e8e8 !important;
-            margin-top: 10px !important;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            color: #e8e8e8;
+            margin-top: 10px;
         }
         
+        /* FIX FOR COUNTDOWN ANIMATION */
+        .countdown-number {
+            opacity: 0 !important; /* This is needed for animation start */
+            animation-duration: 1s !important;
+            animation-fill-mode: forwards !important;
+        }
+        
+        .countdown-number:nth-child(1) { 
+            animation-delay: 0s !important;
+        }
+        .countdown-number:nth-child(2) { 
+            animation-delay: 1s !important;
+        }
+        .countdown-number:nth-child(3) { 
+            animation-delay: 2s !important;
+        }
+        
+        /* FIX FOR FADE-IN TEXTS */
+        .fade-in-text {
+            opacity: 0 !important; /* Start hidden for animation */
+        }
+        
+        .fade-in-text:nth-child(1) { 
+            animation-delay: 3s !important;
+        }
+        .fade-in-text:nth-child(2) { 
+            animation-delay: 3.5s !important;
+        }
+        
+        /* FIX FOR TITLE WORDS */
+        .title-word:nth-child(1) { animation-delay: 4.8s !important; }
+        .title-word:nth-child(2) { animation-delay: 5s !important; }
+        .title-word:nth-child(3) { animation-delay: 5.2s !important; }
+        .title-word:nth-child(4) { animation-delay: 5.4s !important; }
+        .title-word:nth-child(5) { animation-delay: 5.6s !important; }
+        
         * {
-            box-sizing: border-box !important;
+            box-sizing: border-box;
+        }
+        
+        /* Force initial hidden state for animated elements */
+        .hero-content {
+            opacity: 0;
+        }
+        
+        .title-underline {
+            opacity: 0;
         }
     </style>
 </head>
